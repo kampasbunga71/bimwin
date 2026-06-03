@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daftar & Masuk — Menuju Sakinah</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,400;1,500&family=Outfit:wght@300;400;500;600;700&family=Amiri:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --g1:#0A3D1F;--g2:#0F5C2E;--g3:#1B7A42;
+  --gold:#C8962D;--gold2:#E8B84B;--gold-pale:#FFF8E7;
+  --pria:#1A4A8A;--pria2:#2563EB;--pria-light:#EEF4FF;
+  --wanita:#8A1A4A;--wanita2:#BE185D;--wanita-light:#FFF0F7;
+  --white:#FFFDF8;--text:#0D1B0F;--muted:#5A7060;
+  --r:16px;--rs:10px;
+  --font-display:'Lora','Cormorant Garamond',Georgia,serif;
+  --font-body:'Outfit','DM Sans',sans-serif;
+  --font-arabic:'Amiri',serif;
+  --text-xs:0.72rem;--text-sm:0.82rem;--text-base:0.92rem;
+  --text-lg:1.05rem;--text-xl:1.3rem;--text-2xl:1.65rem;--text-3xl:2rem;
+  --fw-light:300;--fw-regular:400;--fw-medium:500;--fw-semi:600;--fw-bold:700;
+  --ls-tight:-0.02em;--ls-normal:0;--ls-wide:0.04em;--ls-wider:0.08em;--ls-widest:0.12em;
+}
+html,body{height:100%;font-family:var(--font-body)}
+body{background:var(--g1);color:var(--text);display:flex;align-items:center;justify-content:center;min-height:100vh;position:relative;overflow-x:hidden;overflow-y:auto;}
+.bg-orbs{position:fixed;inset:0;pointer-events:none;z-index:0}
+.orb{position:absolute;border-radius:50%;filter:blur(90px);opacity:0.16;animation:drift 20s ease-in-out infinite}
+.orb1{width:520px;height:520px;background:var(--g3);top:-120px;left:-160px;animation-delay:0s}
+.orb2{width:420px;height:420px;background:var(--gold);bottom:-80px;right:-80px;animation-delay:-7s}
+.orb3{width:320px;height:320px;background:#1B4F8A;top:40%;left:58%;animation-delay:-13s}
+@keyframes drift{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(28px,-18px) scale(1.04)}66%{transform:translate(-18px,28px) scale(0.96)}}
+.bg-grid{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.035;background-image:linear-gradient(rgba(255,255,255,0.6) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.6) 1px,transparent 1px);background-size:48px 48px;}
+.wrap{position:relative;z-index:1;width:100%;max-width:520px;padding:24px 20px;max-height:100vh;overflow-y:auto;}
+.wrap::-webkit-scrollbar{width:3px}
+.wrap::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.18);border-radius:2px}
+.logo-top{text-align:center;margin-bottom:32px}
+.logo-seal{width:84px;height:84px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;padding:10px;box-shadow:0 0 0 5px rgba(200,150,45,0.2),0 10px 36px rgba(0,0,0,0.25);animation:pulse-seal 3.5s ease-in-out infinite;}
+.logo-seal img{width:100%;height:100%;object-fit:contain;}
+@keyframes pulse-seal{0%,100%{box-shadow:0 0 0 5px rgba(200,150,45,0.2),0 10px 36px rgba(0,0,0,0.25)}50%{box-shadow:0 0 0 10px rgba(200,150,45,0.1),0 10px 44px rgba(0,0,0,0.35)}}
+.logo-top h1{font-family:var(--font-display);font-size:var(--text-3xl);font-weight:var(--fw-bold);letter-spacing:var(--ls-tight);color:var(--white);line-height:1.2;}
+.logo-top p{font-family:var(--font-body);font-size:var(--text-xs);font-weight:var(--fw-medium);letter-spacing:var(--ls-widest);color:rgba(255,255,255,0.45);margin-top:6px;text-transform:uppercase;}
+.card{background:rgba(255,253,248,0.97);border-radius:var(--r);padding:38px 36px;box-shadow:0 32px 80px rgba(0,0,0,0.38),0 0 0 1px rgba(255,255,255,0.08);backdrop-filter:blur(24px);}
+.steps-ind{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:32px;}
+.si-dot{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:var(--text-xs);font-weight:var(--fw-semi);transition:all 0.4s cubic-bezier(0.34,1.56,0.64,1);flex-shrink:0;}
+.si-dot.done{background:var(--g3);color:white}
+.si-dot.active{background:var(--gold);color:white;box-shadow:0 0 0 5px rgba(200,150,45,0.18);}
+.si-dot.pending{background:#E8EDE9;color:#9AAB9D}
+.si-line{flex:1;height:2px;background:#E8EDE9;max-width:44px;transition:background 0.4s}
+.si-line.done{background:var(--g3)}
+.step-form{display:none;animation:stepIn 0.4s cubic-bezier(0.34,1.56,0.64,1)}
+.step-form.active{display:block}
+@keyframes stepIn{from{opacity:0;transform:translateY(14px) scale(0.985)}to{opacity:1;transform:translateY(0) scale(1)}}
+.step-title{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:var(--fw-bold);letter-spacing:var(--ls-tight);color:var(--g1);line-height:1.25;margin-bottom:5px;text-align:center;}
+.step-sub{font-family:var(--font-body);font-size:var(--text-sm);font-weight:var(--fw-regular);color:var(--muted);line-height:1.6;margin-bottom:26px;text-align:center;}
+.gender-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.gender-btn{padding:26px 16px 20px;border-radius:var(--r);border:2px solid #E0EAE2;background:white;cursor:pointer;text-align:center;transition:all 0.25s;position:relative;overflow:hidden;}
+.gender-btn:hover{transform:translateY(-3px);box-shadow:0 10px 28px rgba(0,0,0,0.1)}
+.gender-btn.pria-btn:hover,.gender-btn.pria-btn.selected{border-color:var(--pria);background:var(--pria-light)}
+.gender-btn.wanita-btn:hover,.gender-btn.wanita-btn.selected{border-color:var(--wanita);background:var(--wanita-light)}
+.gb-icon{font-size:2.6rem;margin-bottom:10px;display:block;transition:transform 0.3s}
+.gender-btn:hover .gb-icon,.gender-btn.selected .gb-icon{transform:scale(1.18)}
+.gb-label{font-family:var(--font-display);font-weight:var(--fw-semi);font-size:var(--text-lg);display:block;color:var(--text);letter-spacing:var(--ls-tight);}
+.gb-sub{font-family:var(--font-body);font-size:var(--text-xs);font-weight:var(--fw-medium);letter-spacing:var(--ls-wide);text-transform:uppercase;color:var(--muted);margin-top:4px;display:block;}
+.pria-btn.selected .gb-label{color:var(--pria)}
+.wanita-btn.selected .gb-label{color:var(--wanita)}
+.gender-check{position:absolute;top:10px;right:10px;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--font-body);font-size:0.7rem;font-weight:var(--fw-bold);opacity:0;transform:scale(0);transition:all 0.3s cubic-bezier(0.34,1.56,0.64,1);}
+.pria-btn.selected .gender-check{background:var(--pria);color:white;opacity:1;transform:scale(1)}
+.wanita-btn.selected .gender-check{background:var(--wanita);color:white;opacity:1;transform:scale(1)}
+.form-row{margin-bottom:18px}
+.form-row label{display:block;font-family:var(--font-body);font-size:var(--text-xs);font-weight:var(--fw-semi);letter-spacing:var(--ls-wide);text-transform:uppercase;color:var(--g1);margin-bottom:7px;}
+.form-row label span{color:#CC3333;margin-left:2px}
+.form-input{width:100%;padding:13px 16px;border-radius:var(--rs);border:1.5px solid #D4E0D6;background:white;font-family:var(--font-body);font-size:var(--text-base);font-weight:var(--fw-regular);color:var(--text);transition:border-color 0.2s,box-shadow 0.2s;outline:none;-webkit-appearance:none;}
+.form-input:focus{border-color:var(--g3);box-shadow:0 0 0 3px rgba(27,122,66,0.12)}
+.form-input::placeholder{color:#B8C8BB;font-weight:var(--fw-light);}
+.form-input.error{border-color:#CC3333;box-shadow:0 0 0 3px rgba(204,51,51,0.1)}
+.theme-pria .form-input:focus{border-color:var(--pria);box-shadow:0 0 0 3px rgba(26,74,138,0.12)}
+.theme-wanita .form-input:focus{border-color:var(--wanita);box-shadow:0 0 0 3px rgba(138,26,74,0.12)}
+.form-2col{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.btn-next{width:100%;padding:15px;border-radius:50px;border:none;cursor:pointer;font-family:var(--font-body);font-size:var(--text-base);font-weight:var(--fw-semi);letter-spacing:var(--ls-wide);transition:all 0.25s;margin-top:10px;}
+.btn-next:hover{transform:translateY(-2px)}
+.btn-default{background:linear-gradient(135deg,var(--g2),var(--g3));color:white;box-shadow:0 4px 22px rgba(15,92,46,0.32)}
+.btn-pria{background:linear-gradient(135deg,var(--pria),var(--pria2));color:white;box-shadow:0 4px 22px rgba(26,74,138,0.32)}
+.btn-wanita{background:linear-gradient(135deg,var(--wanita),var(--wanita2));color:white;box-shadow:0 4px 22px rgba(138,26,74,0.32)}
+.btn-back{background:none;border:1.5px solid #D4E0D6;color:var(--muted);padding:12px;border-radius:50px;width:100%;cursor:pointer;font-family:var(--font-body);font-size:var(--text-sm);font-weight:var(--fw-medium);margin-top:10px;transition:all 0.2s;}
+.btn-back:hover{border-color:var(--g3);color:var(--g2)}
+.summary-card{border-radius:var(--rs);padding:18px;margin-bottom:20px}
+.sum-pria{background:var(--pria-light);border:1.5px solid rgba(26,74,138,0.18)}
+.sum-wanita{background:var(--wanita-light);border:1.5px solid rgba(138,26,74,0.18)}
+.sum-row{display:flex;justify-content:space-between;padding:7px 0;font-size:var(--text-sm);border-bottom:1px solid rgba(0,0,0,0.05);gap:12px;}
+.sum-row:last-child{border-bottom:none}
+.sum-row .key{font-family:var(--font-body);font-weight:var(--fw-medium);letter-spacing:var(--ls-wide);color:var(--muted);white-space:nowrap;flex-shrink:0;}
+.sum-row .val{font-family:var(--font-body);font-weight:var(--fw-semi);color:var(--text);text-align:right;}
+.err-msg{font-family:var(--font-body);font-size:var(--text-xs);font-weight:var(--fw-medium);color:#CC3333;margin-top:6px;display:none;}
+.err-msg.show{display:block}
+.success-screen{text-align:center;padding:24px 0;display:none}
+.success-screen.show{display:block;animation:stepIn 0.5s ease}
+.success-icon{font-size:4rem;display:block;margin-bottom:18px;animation:bounce 0.6s ease}
+@keyframes bounce{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
+.success-screen h2{font-family:var(--font-display);font-size:var(--text-2xl);font-weight:var(--fw-bold);letter-spacing:var(--ls-tight);color:var(--g1);margin-bottom:8px;}
+.success-screen p{font-family:var(--font-body);font-size:var(--text-sm);font-weight:var(--fw-regular);color:var(--muted);max-width:340px;margin:0 auto 20px;line-height:1.65;}
+.progress-load{height:4px;background:#E0EAE2;border-radius:2px;overflow:hidden;margin:16px 0}
+.progress-load-fill{height:100%;border-radius:2px;animation:load 2s ease forwards}
+.pria-fill{background:linear-gradient(90deg,var(--pria),#60A5FA)}
+.wanita-fill{background:linear-gradient(90deg,var(--wanita),#F472B6)}
+.default-fill{background:linear-gradient(90deg,var(--g2),var(--g3))}
+@keyframes load{from{width:0%}to{width:100%}}
+.terms-note{font-family:var(--font-body);font-size:var(--text-xs);font-weight:var(--fw-regular);letter-spacing:var(--ls-wide);color:var(--muted);text-align:center;margin-top:16px;line-height:1.6;}
+@media(max-width:480px){.card{padding:28px 22px}.form-2col{grid-template-columns:1fr}.logo-top h1{font-size:1.6rem}}
+</style>
+</head>
+<body>
+<div class="bg-orbs"><div class="orb orb1"></div><div class="orb orb2"></div><div class="orb orb3"></div></div>
+<div class="bg-grid"></div>
+<div class="wrap">
+  <div class="logo-top">
+    <div class="logo-seal"><img src="Kemenag Warna.png" alt="Logo Kementerian Agama RI"></div>
+    <h1>Menuju Sakinah</h1>
+    <p>Bimbingan Perkawinan Online · Kementerian Agama RI</p>
+  </div>
+  <div class="card" id="main-card">
+    <div class="steps-ind" id="steps-ind">
+      <div class="si-dot active" id="si1">1</div>
+      <div class="si-line" id="sl1"></div>
+      <div class="si-dot pending" id="si2">2</div>
+      <div class="si-line" id="sl2"></div>
+      <div class="si-dot pending" id="si3">&#10003;</div>
+    </div>
+
+    <!-- STEP 1: Pilih Jenis Kelamin -->
+    <div class="step-form active" id="step1">
+      <div class="step-title">Selamat Datang</div>
+      <div class="step-sub">Pilih jenis kelamin Anda untuk mendapatkan materi bimbingan yang sesuai</div>
+      <div class="gender-grid">
+        <div class="gender-btn pria-btn" onclick="pilihGender('pria',this)"><div class="gender-check">&#10003;</div><span class="gb-icon">&#128104;</span><span class="gb-label">Laki-laki</span><span class="gb-sub">Calon Suami</span></div>
+        <div class="gender-btn wanita-btn" onclick="pilihGender('wanita',this)"><div class="gender-check">&#10003;</div><span class="gb-icon">&#128105;</span><span class="gb-label">Perempuan</span><span class="gb-sub">Calon Istri</span></div>
+      </div>
+      <div class="err-msg" id="err-gender">&#9888; Silakan pilih jenis kelamin terlebih dahulu</div>
+      <button class="btn-next btn-default" id="btn1" onclick="goStep(2)">Lanjutkan &rarr;</button>
+      <div class="terms-note">Data Anda aman dan hanya digunakan untuk keperluan sertifikat Bimwin</div>
+    </div>
+
+    <!-- STEP 2: Data Diri -->
+    <div class="step-form" id="step2">
+      <div class="step-title" id="step2-title">Data Diri</div>
+      <div class="step-sub">Isi data lengkap untuk keperluan sertifikat digital Bimwin</div>
+      <div class="form-row"><label>Nama Lengkap <span>*</span></label><input type="text" class="form-input" id="inp-nama" placeholder="Nama sesuai KTP" maxlength="80" autocomplete="name"><div class="err-msg" id="err-nama">&#9888; Nama lengkap wajib diisi</div></div>
+      <div class="form-2col">
+        <div class="form-row"><label>Tempat Lahir <span>*</span></label><input type="text" class="form-input" id="inp-ttl" placeholder="Kota lahir" maxlength="50"><div class="err-msg" id="err-ttl">&#9888; Wajib diisi</div></div>
+        <div class="form-row"><label>Tanggal Lahir <span>*</span></label><input type="date" class="form-input" id="inp-tgl" max=""><div class="err-msg" id="err-tgl">&#9888; Wajib diisi</div></div>
+      </div>
+      <div class="form-row"><label>Tempat Tinggal / Alamat <span>*</span></label><input type="text" class="form-input" id="inp-alamat" placeholder="Kab/Kota, Provinsi" maxlength="100"><div class="err-msg" id="err-alamat">&#9888; Wajib diisi</div></div>
+      <div class="form-row"><label>No. HP / WhatsApp <span>*</span></label><input type="tel" class="form-input" id="inp-hp" placeholder="08xxxxxxxxxx" maxlength="15"><div class="err-msg" id="err-hp">&#9888; No. HP wajib diisi</div></div>
+      <button class="btn-next btn-default" id="btn2" onclick="goStep(3)">Lanjutkan &rarr;</button>
+      <button class="btn-back" onclick="goStep(1)">&larr; Kembali</button>
+    </div>
+
+    <!-- STEP 3: Konfirmasi -->
+    <div class="step-form" id="step3">
+      <div class="step-title">Konfirmasi Data</div>
+      <div class="step-sub">Periksa kembali data Anda sebelum memulai bimbingan</div>
+      <div class="summary-card" id="sum-card">
+        <div class="sum-row"><span class="key">Jenis Kelamin</span><span class="val" id="sum-jk">&mdash;</span></div>
+        <div class="sum-row"><span class="key">Nama Lengkap</span><span class="val" id="sum-nama">&mdash;</span></div>
+        <div class="sum-row"><span class="key">Tempat, Tgl Lahir</span><span class="val" id="sum-ttl">&mdash;</span></div>
+        <div class="sum-row"><span class="key">Tempat Tinggal</span><span class="val" id="sum-alamat">&mdash;</span></div>
+        <div class="sum-row"><span class="key">No. HP</span><span class="val" id="sum-hp">&mdash;</span></div>
+      </div>
+      <button class="btn-next btn-default" id="btn3" onclick="mulaiProgram()">Mulai Bimbingan Perkawinan</button>
+      <button class="btn-back" onclick="goStep(2)">&larr; Kembali &amp; Edit</button>
+    </div>
+
+    <!-- SUCCESS -->
+    <div class="success-screen" id="success-screen">
+      <span class="success-icon" id="suc-icon">&#127881;</span>
+      <h2 id="suc-title">Selamat Datang!</h2>
+      <p id="suc-msg">Memuat program bimbingan yang sesuai untuk Anda...</p>
+      <div class="progress-load"><div class="progress-load-fill default-fill" id="load-bar"></div></div>
+      <p style="font-family:var(--font-body);font-size:var(--text-xs);color:#9AAB9D;letter-spacing:var(--ls-wide)">Mengalihkan ke dashboard bimbingan...</p>
+    </div>
+  </div>
+
+  <!-- ADMIN LOGIN LINK -->
+  <div style="text-align:center;margin-top:14px">
+    <button onclick="showAdminLogin()" style="background:none;border:none;font-family:var(--font-body);font-size:0.72rem;color:rgba(255,255,255,0.35);cursor:pointer;letter-spacing:0.08em;text-transform:uppercase;padding:6px 12px;transition:color 0.2s" onmouseover="this.style.color='rgba(200,150,45,0.7)'" onmouseout="this.style.color='rgba(255,255,255,0.35)'">⚙️ Masuk sebagai Admin KUA</button>
+  </div>
+
+  <!-- ADMIN LOGIN MODAL -->
+  <div id="admin-login-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:50000;align-items:center;justify-content:center;backdrop-filter:blur(10px)" onclick="if(event.target===this)closeAdminLogin()">
+    <div style="background:var(--white);border-radius:var(--r);padding:36px;max-width:380px;width:90%;box-shadow:0 32px 80px rgba(0,0,0,0.4);position:relative">
+      <button onclick="closeAdminLogin()" style="position:absolute;top:14px;right:14px;background:none;border:none;font-size:1.1rem;cursor:pointer;color:var(--muted)">✕</button>
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="font-size:2.2rem;margin-bottom:8px">🔐</div>
+        <div style="font-family:var(--font-display);font-size:1.3rem;font-weight:700;color:var(--g1)">Login Admin KUA</div>
+        <div style="font-family:var(--font-body);font-size:0.75rem;color:var(--muted);margin-top:4px">Akses pengaturan sertifikat, video & soal</div>
+      </div>
+      <div style="margin-bottom:14px">
+        <label style="font-family:var(--font-body);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--g1);display:block;margin-bottom:6px">Username Admin</label>
+        <input type="text" id="adm-username" class="form-input" placeholder="admin" autocomplete="off">
+      </div>
+      <div style="margin-bottom:22px">
+        <label style="font-family:var(--font-body);font-size:0.72rem;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--g1);display:block;margin-bottom:6px">Password</label>
+        <input type="password" id="adm-password" class="form-input" placeholder="••••••••" autocomplete="off" onkeypress="if(event.key==='Enter')doAdminLogin()">
+      </div>
+      <div id="adm-err" style="display:none;font-family:var(--font-body);font-size:0.75rem;color:#CC3333;text-align:center;margin-bottom:12px;background:#FEF2F2;padding:10px;border-radius:8px">❌ Username atau password salah</div>
+      <button onclick="doAdminLogin()" style="width:100%;padding:14px;border-radius:50px;border:none;cursor:pointer;font-family:var(--font-body);font-size:0.88rem;font-weight:600;background:linear-gradient(135deg,var(--g2),var(--g3));color:white;box-shadow:0 4px 18px rgba(15,92,46,0.3);transition:transform 0.2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='translateY(0)'">Masuk sebagai Admin →</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+'use strict';
+let userData = {gender:'',nama:'',ttl:'',tgl:'',alamat:'',hp:''};
+
+document.getElementById('inp-tgl').max = new Date().toISOString().split('T')[0];
+
+document.querySelectorAll('.form-input').forEach(inp => {
+  inp.addEventListener('input', () => {
+    inp.classList.remove('error');
+    const errEl = document.getElementById(inp.id.replace('inp-','err-'));
+    if (errEl) errEl.classList.remove('show');
+  });
+  inp.addEventListener('change', () => {
+    inp.classList.remove('error');
+    const errEl = document.getElementById(inp.id.replace('inp-','err-'));
+    if (errEl) errEl.classList.remove('show');
+  });
+});
+
+function pilihGender(g, el) {
+  userData.gender = g;
+  document.querySelectorAll('.gender-btn').forEach(b => b.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('err-gender').classList.remove('show');
+  document.getElementById('main-card').className = 'card theme-' + g;
+  document.getElementById('btn1').className = 'btn-next btn-' + g;
+  document.getElementById('step2-title').textContent = g==='pria' ? 'Data Diri Calon Suami' : 'Data Diri Calon Istri';
+  try { localStorage.setItem('bimwin_user', JSON.stringify({gender:g})); } catch(e){}
+}
+
+function goStep(n) {
+  if (n===2 && !userData.gender) { document.getElementById('err-gender').classList.add('show'); return; }
+  if (n===3) {
+    let ok=true;
+    [['inp-nama','err-nama'],['inp-ttl','err-ttl'],['inp-tgl','err-tgl'],['inp-alamat','err-alamat'],['inp-hp','err-hp']].forEach(([id,eid]) => {
+      const v=document.getElementById(id).value.trim();
+      if (!v) { document.getElementById(eid).classList.add('show'); document.getElementById(id).classList.add('error'); ok=false; }
+      else { document.getElementById(eid).classList.remove('show'); document.getElementById(id).classList.remove('error'); }
+    });
+    if (!ok) return;
+    userData.nama   = document.getElementById('inp-nama').value.trim();
+    userData.ttl    = document.getElementById('inp-ttl').value.trim();
+    userData.tgl    = document.getElementById('inp-tgl').value;
+    userData.alamat = document.getElementById('inp-alamat').value.trim();
+    userData.hp     = document.getElementById('inp-hp').value.trim();
+    fillSummary();
+  }
+  updateSteps(n);
+  document.querySelectorAll('.step-form').forEach(f => f.classList.remove('active'));
+  document.getElementById('step'+n).classList.add('active');
+  document.getElementById('main-card').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function updateSteps(n) {
+  for (let i=1;i<=3;i++) {
+    const dot=document.getElementById('si'+i), line=document.getElementById('sl'+i);
+    if (i<n) { dot.className='si-dot done'; dot.textContent='\u2713'; if(line) line.className='si-line done'; }
+    else if (i===n) { dot.className='si-dot active'; }
+    else { dot.className='si-dot pending'; }
+  }
+}
+
+function fillSummary() {
+  const tgl=document.getElementById('inp-tgl').value;
+  const tglStr=tgl?new Date(tgl).toLocaleDateString('id-ID',{day:'numeric',month:'long',year:'numeric'}):'—';
+  document.getElementById('sum-jk').textContent     = userData.gender==='pria'?'Laki-laki (Calon Suami)':'Perempuan (Calon Istri)';
+  document.getElementById('sum-nama').textContent   = document.getElementById('inp-nama').value.trim()||'—';
+  document.getElementById('sum-ttl').textContent    = (userData.ttl&&tgl)?(userData.ttl+', '+tglStr):'—';
+  document.getElementById('sum-alamat').textContent = document.getElementById('inp-alamat').value.trim()||'—';
+  document.getElementById('sum-hp').textContent     = document.getElementById('inp-hp').value.trim()||'—';
+  document.getElementById('sum-card').className = 'summary-card '+(userData.gender==='pria'?'sum-pria':'sum-wanita');
+  document.getElementById('btn3').className = 'btn-next btn-'+(userData.gender||'default');
+}
+
+// ═══════════════════════════════════════════════════════
+// BACKEND INTEGRATION — FastAPI http://127.0.0.1:8000
+// ═══════════════════════════════════════════════════════
+const BIMWIN_API = "https://web-production-55a2c.up.railway.app";
+
+function showToast(msg, type) {
+  type = type || 'info';
+  let t = document.getElementById('bimwin-toast');
+  if (!t) {
+    t = document.createElement('div');
+    t.id = 'bimwin-toast';
+    t.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%);padding:12px 22px;border-radius:50px;font-family:var(--font-body);font-size:0.82rem;font-weight:600;letter-spacing:0.04em;z-index:9999;box-shadow:0 6px 24px rgba(0,0,0,0.18);transition:opacity 0.3s;pointer-events:none;';
+    document.body.appendChild(t);
+  }
+  const colors = {
+    info:    'background:#0F5C2E;color:#fff',
+    error:   'background:#CC3333;color:#fff',
+    warning: 'background:#C8962D;color:#fff',
+    success: 'background:#1B7A42;color:#fff',
+  };
+  t.style.cssText += ';' + (colors[type] || colors.info);
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(t._tid);
+  t._tid = setTimeout(function(){ t.style.opacity = '0'; }, 3200);
+}
+
+window.mulaiProgram = async function () {
+  const finalData = {
+    gender : userData.gender,
+    nama   : (document.getElementById('inp-nama') && document.getElementById('inp-nama').value.trim())   || '',
+    ttl    : (document.getElementById('inp-ttl')  && document.getElementById('inp-ttl').value.trim())    || '',
+    tgl    : (document.getElementById('inp-tgl')  && document.getElementById('inp-tgl').value)           || '',
+    alamat : (document.getElementById('inp-alamat')&& document.getElementById('inp-alamat').value.trim())|| '',
+    hp     : (document.getElementById('inp-hp')   && document.getElementById('inp-hp').value.trim())     || '',
+  };
+  if (!finalData.gender) {
+    try { finalData.gender = JSON.parse(localStorage.getItem('bimwin_user')||'{}').gender||'pria'; } catch(e){}
+  }
+
+  // username = no HP, password = tanggal lahir YYYYMMDD
+  const username = finalData.hp;
+  const password = finalData.tgl.replace(/-/g,'');
+
+  // Simpan data ke localStorage dulu (fallback offline)
+  // Hapus semua data peserta sebelumnya agar progress tidak ikut-sertakan
+  // Bersihkan key umum
+  localStorage.removeItem('bimwin_scores');
+  localStorage.removeItem('bimwin_progress');
+  localStorage.removeItem('bimwin_milestones');
+  localStorage.removeItem('bimwin_user');
+  // Bersihkan juga key persisten yang mungkin ada dari peserta lain di device sama
+  // (kita tidak hapus semua key peserta agar fitur "lanjutkan" masih bisa dipakai oleh peserta yang SAMA)
+  localStorage.setItem('bimwin_user', JSON.stringify(Object.assign({}, finalData, { username: username })));
+  try {
+    // 1. Daftarkan user (auth) ke /users
+    const regRes = await fetch(BIMWIN_API + '/users', {
+      method  : 'POST',
+      headers : {'Content-Type':'application/json'},
+      body    : JSON.stringify({ username: username, password: password, nama: finalData.nama, role: 'peserta' })
+    });
+    if (regRes.ok) {
+      showToast('Akun berhasil dibuat!', 'success');
+    } else if (regRes.status === 409) {
+      showToast('Akun sudah ada, masuk otomatis.', 'info');
+    }
+
+    // 2. Login otomatis setelah daftar
+    const loginRes = await fetch(BIMWIN_API + '/login', {
+      method  : 'POST',
+      headers : {'Content-Type':'application/json'},
+      body    : JSON.stringify({ username: username, password: password })
+    });
+    if (loginRes.ok) {
+      const loginData = await loginRes.json();
+      if (loginData.success) {
+        localStorage.setItem('user_nama', loginData.nama);
+        localStorage.setItem('user_role', loginData.role);
+      }
+    }
+
+    // 3. Daftarkan ke /api/peserta agar dapat peserta_id untuk sertifikat
+    const pesertaRes = await fetch(BIMWIN_API + '/api/peserta', {
+      method  : 'POST',
+      headers : {'Content-Type':'application/json'},
+      body    : JSON.stringify({
+        nama          : finalData.nama,
+        nik           : username, // fallback: gunakan no HP jika NIK tidak diisi
+        no_hp         : finalData.hp,
+        gender        : finalData.gender === 'pria' ? 'L' : 'P',
+        tanggal_lahir : finalData.tgl || null,
+        alamat        : finalData.alamat || null,
+      })
+    });
+    if (pesertaRes.ok) {
+      const pesertaData = await pesertaRes.json();
+      const pesertaId = pesertaData.peserta
+        ? pesertaData.peserta.id
+        : (pesertaData.id || null);
+      if (pesertaId) {
+        const stored = JSON.parse(localStorage.getItem('bimwin_user') || '{}');
+        stored.peserta_id = pesertaId;
+        localStorage.setItem('bimwin_user', JSON.stringify(stored));
+      }
+    }
+  } catch (err) {
+    console.warn('[Bimwin] Backend offline. Mode lokal aktif.', err);
+    showToast('Mode offline — data tersimpan lokal.', 'warning');
+  }
+
+  // Tampilkan success screen
+  document.querySelectorAll('.step-form').forEach(function(f){ f.classList.remove('active'); });
+  document.getElementById('steps-ind').style.display = 'none';
+  const ss = document.getElementById('success-screen');
+  const nm = finalData.nama.split(' ')[0] || 'Peserta';
+  const g  = finalData.gender;
+  ss.classList.add('show');
+  document.getElementById('suc-icon').textContent  = g === 'pria' ? '\uD83D\uDC68' : '\uD83D\uDC69';
+  document.getElementById('suc-title').textContent = 'Selamat Datang, ' + nm + '!';
+  document.getElementById('suc-msg').textContent   = 'Memuat materi bimbingan untuk ' + (g === 'pria' ? 'Calon Suami' : 'Calon Istri') + '...';
+  document.getElementById('load-bar').className    = 'progress-load-fill ' + (g === 'pria' ? 'pria-fill' : 'wanita-fill');
+
+  // Redirect ke dashboard
+  setTimeout(function(){ window.location.href = 'dashboard.html'; }, 2200);
+};
+
+function showAdminLogin() {
+  document.getElementById('admin-login-modal').style.display = 'flex';
+  setTimeout(()=>document.getElementById('adm-username').focus(), 100);
+}
+function closeAdminLogin() {
+  document.getElementById('admin-login-modal').style.display = 'none';
+  document.getElementById('adm-err').style.display = 'none';
+  document.getElementById('adm-username').value = '';
+  document.getElementById('adm-password').value = '';
+}
+function doAdminLogin() {
+  const u = document.getElementById('adm-username').value.trim();
+  const p = document.getElementById('adm-password').value;
+  // Ambil kredensial admin dari localStorage (default: admin / bimwin2024)
+  let adminCred = { username: 'admin', password: 'bimwin2024' };
+  try { const ac = localStorage.getItem('bimwin_admin_cred'); if (ac) adminCred = JSON.parse(ac); } catch(e){}
+  if (u === adminCred.username && p === adminCred.password) {
+    localStorage.setItem('bimwin_admin_session', '1');
+    localStorage.setItem('bimwin_user', JSON.stringify({ gender:'pria', nama:'Admin KUA', role:'admin', hp:'00000000000', username:'admin', tgl:'2000-01-01', ttl:'', alamat:'', pasangan:'', kua:'' }));
+    localStorage.removeItem('bimwin_scores');
+    localStorage.removeItem('bimwin_progress');
+    localStorage.removeItem('bimwin_milestones');
+    window.location.href = 'dashboard.html';
+  } else {
+    document.getElementById('adm-err').style.display = 'block';
+    document.getElementById('adm-password').value = '';
+    document.getElementById('adm-password').focus();
+  }
+}
+
+</script>
+</body>
+</html>
