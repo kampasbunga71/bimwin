@@ -309,28 +309,31 @@ body{overflow-y:auto;}
 @keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 /* CERT */
 .cert-locked{background:var(--bg-card);border-radius:var(--r);padding:40px 28px;text-align:center;border:1px solid var(--border);box-shadow:var(--shadow-sm);}
-.cert-page{max-width:720px;margin:0 auto;}
-.cert-preview{background:#fff;border-radius:6px;box-shadow:var(--shadow-xl);overflow:hidden;width:100%;aspect-ratio:210/297;}
-.cert-inner{padding:6%;height:100%;box-sizing:border-box;}
-.cert-border{border:4px double var(--gold);border-radius:4px;height:100%;box-sizing:border-box;padding:5% 6%;display:flex;flex-direction:column;align-items:center;text-align:center;color:#222;background:#fff;}
-.cert-seal{width:56px;height:56px;margin:0 auto 8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.cert-page{max-width:900px;margin:0 auto;}
+.cert-preview{background:#fff;border-radius:6px;box-shadow:var(--shadow-xl);overflow:hidden;width:100%;aspect-ratio:297/210;position:relative;}
+.cert-inner{position:absolute;inset:0;}
+.cert-border{position:absolute;inset:0;background:#F4F6F2;overflow:hidden;display:flex;flex-direction:column;color:#222;font-family:var(--font-body);}
+.cert-border::before{content:'';position:absolute;left:0;top:0;bottom:0;width:34%;background:var(--g1);clip-path:polygon(0 0,72% 0,30% 100%,0 100%);z-index:1;}
+.cert-border::after{content:'';position:absolute;left:0;top:0;bottom:0;width:34%;background:var(--gold);clip-path:polygon(0 0,82% 0,40% 100%,0 100%);z-index:0;}
+.cert-content{position:relative;z-index:2;flex:1;display:flex;flex-direction:column;padding:7% 6% 6% 30%;}
+.cert-seal{width:8%;aspect-ratio:1;margin-bottom:1.5%;display:flex;align-items:center;justify-content:center;}
 .cert-seal img{width:100%;height:100%;object-fit:contain;}
-.cert-kemenag{font-family:var(--font-body);font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--g1);margin-bottom:4px;}
-.cert-title{font-family:var(--font-display);font-size:clamp(1.1rem,3.5vw,1.5rem);font-weight:700;letter-spacing:-.01em;color:var(--g1);margin-bottom:10px;}
-.cert-sub{font-family:var(--font-body);font-size:.66rem;color:#666;line-height:1.6;margin-bottom:18px;max-width:90%;}
-.cert-diberikan{font-family:var(--font-body);font-size:.68rem;font-weight:500;letter-spacing:.05em;color:#888;margin-bottom:6px;}
-.cert-name{font-family:var(--font-display);font-size:clamp(1.3rem,4.5vw,1.9rem);font-weight:700;letter-spacing:-.02em;line-height:1.25;color:var(--gold);margin-bottom:8px;}
-.cert-detail{font-family:var(--font-body);font-size:.68rem;color:#555;line-height:1.85;margin-bottom:auto;}
-.cert-nomor-wrap{margin:14px 0 6px;}
-.cert-nomor-label{font-family:var(--font-body);font-size:.58rem;color:#999;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
-.cert-nomor-val{font-family:var(--font-body);font-size:.82rem;font-weight:700;color:var(--g1);letter-spacing:.08em;}
-.cert-ttd-row{display:flex;justify-content:center;margin-top:14px;width:100%;}
-.cert-ttd{text-align:center;min-width:220px;}
-.cert-ttd-title{font-family:var(--font-body);font-size:.65rem;font-weight:600;color:#777;margin-bottom:6px;}
-.cert-ttd-line{width:140px;height:1px;background:#ccc;margin:32px auto 6px;}
-.cert-ttd-name{font-family:var(--font-body);font-size:.72rem;font-weight:700;color:#222;}
-.cert-ttd-nip{font-family:var(--font-body);font-size:.62rem;color:#999;margin-top:2px;}
-.cert-desc-italic{font-family:var(--font-body);font-size:.66rem;color:#777;font-style:italic;max-width:90%;margin:0 auto 4px;line-height:1.5;}
+.cert-kemenag{font-size:.62rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--g1);margin-bottom:6px;}
+.cert-title{font-family:var(--font-display);font-size:clamp(1.4rem,4.5vw,2.2rem);font-weight:700;letter-spacing:.04em;color:#1a1a1a;margin-bottom:14px;text-transform:uppercase;}
+.cert-sub{font-size:.66rem;color:#666;line-height:1.6;margin-bottom:16px;max-width:80%;}
+.cert-diberikan{display:inline-flex;align-items:center;background:var(--g1);color:#fff;font-size:.7rem;font-weight:600;letter-spacing:.05em;padding:7px 22px 7px 14px;margin-bottom:14px;clip-path:polygon(0 0,92% 0,100% 50%,92% 100%,0 100%);}
+.cert-name{font-family:var(--font-display);font-size:clamp(1.4rem,4.5vw,2.1rem);font-weight:700;letter-spacing:-.01em;line-height:1.25;color:var(--gold);margin-bottom:8px;}
+.cert-detail{font-size:.68rem;color:#555;line-height:1.85;margin-bottom:10px;}
+.cert-desc-italic{font-size:.64rem;color:#777;font-style:italic;max-width:80%;line-height:1.6;margin-bottom:10px;}
+.cert-nomor-wrap{margin-bottom:auto;}
+.cert-nomor-label{font-size:.58rem;color:#999;letter-spacing:.12em;text-transform:uppercase;margin-bottom:3px;}
+.cert-nomor-val{font-size:.78rem;font-weight:700;color:var(--g1);letter-spacing:.08em;}
+.cert-ttd-row{display:flex;justify-content:flex-end;margin-top:14px;}
+.cert-ttd{text-align:center;min-width:170px;}
+.cert-ttd-title{font-size:.64rem;font-weight:600;color:#777;margin-bottom:4px;}
+.cert-ttd-line{width:130px;height:1px;background:#bbb;margin:30px auto 5px;}
+.cert-ttd-name{font-size:.72rem;font-weight:700;color:#222;}
+.cert-ttd-nip{font-size:.6rem;color:#999;margin-top:2px;}
 .cert-score-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:12px;margin:20px 0;}
 .cert-score-item{background:var(--bg-base);border-radius:var(--rs);padding:14px;text-align:center;border:1px solid var(--border);}
 .cert-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:18px;}
@@ -372,18 +375,16 @@ body{overflow-y:auto;}
 .adm-soal-head{font-family:var(--font-display);font-weight:600;font-size:.86rem;color:var(--text-color);margin-bottom:7px;}
 /* PRINT */
 @media print{
-  @page{size:A4 portrait;margin:0}
+  @page{size:A4 landscape;margin:0}
   html,body{height:auto !important;background:white !important;color:#1a1a1a !important;overflow:visible !important}
-  .topbar,.sidebar,.sidebar-overlay,.global-progress-bar,.page-hdr,.cert-score-grid,.cert-actions,.progress-toast,.milestone-banner,.nav-section,.nav-item,.progress-panel,.form-2col,.hero-section{display:none !important}
+  .topbar,.sidebar,.sidebar-overlay,.global-progress-bar,.page-hdr,.cert-score-grid,.cert-actions,.progress-toast,.milestone-banner,.nav-section,.nav-item,.progress-panel,.form-2col,.hero-section,.cert-pasangan-input{display:none !important}
   body{background:white !important;}
   .main{margin:0 !important;padding:0 !important;width:100% !important;overflow:visible !important;}
   .cert-page{max-width:100% !important;margin:0 !important;padding:0 !important;}
-  .cert-preview{box-shadow:none !important;border:none !important;background:white !important;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;width:210mm !important;height:297mm !important;aspect-ratio:auto !important;border-radius:0 !important;}
-  .cert-inner{padding:14mm !important;}
-  .cert-border{border:3px double #C8962D !important;border-radius:4px !important;position:relative !important;background:white !important;}
-  .cert-seal{width:50px !important;height:50px !important;}
-  .cert-name{color:#C8962D !important;font-size:24pt !important;}
-  .cert-title{color:#0A3D1F !important;font-size:18pt !important}
+  .cert-preview{box-shadow:none !important;border:none !important;background:white !important;-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;width:297mm !important;height:210mm !important;aspect-ratio:auto !important;border-radius:0 !important;page-break-after:avoid !important;page-break-inside:avoid !important;}
+  .cert-seal{width:60px !important;height:60px !important;}
+  .cert-name{font-size:26pt !important;}
+  .cert-title{font-size:22pt !important}
 }
 /* MOBILE */
 @media(max-width:768px){
@@ -706,7 +707,7 @@ document.addEventListener('DOMContentLoaded', function() {
     </div>
     <div id="cert-ready-view" style="display:none">
       <!-- Form Input Pasangan secara Real-Time (KUA diisi admin) -->
-      <div style="margin-bottom: 24px; text-align: left;">
+      <div class="cert-pasangan-input" style="margin-bottom: 24px; text-align: left;">
         <div>
           <label style="font-family:var(--font-body);font-size:.72rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--g1);display:block;margin-bottom:6px">Nama Calon Pasangan</label>
           <input type="text" id="cert-inp-pasangan" class="form-input" placeholder="Nama Calon Suami / Istri">
@@ -715,7 +716,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <div class="cert-score-grid" id="cert-score-grid"></div>
 
       <div class="cert-preview" id="cert-card">
-        <div class="cert-inner"><div class="cert-border">
+        <div class="cert-inner"><div class="cert-border"><div class="cert-content">
           <div class="cert-seal"><img src="Kemenag Warna.png" alt="Logo Kemenag"></div>
           <div class="cert-kemenag">KEMENTERIAN AGAMA REPUBLIK INDONESIA</div>
           <div class="cert-title">SERTIFIKAT KELULUSAN</div>
@@ -737,7 +738,7 @@ document.addEventListener('DOMContentLoaded', function() {
               <div class="cert-ttd-nip" id="cert-tgl-display">—</div>
             </div>
           </div>
-        </div></div>
+        </div></div></div>
       </div>
       <div class="cert-actions">
         <button class="cert-btn cert-btn-main" onclick="window.print()">🖨️ Cetak / Unduh PDF</button>
@@ -1321,7 +1322,7 @@ function renderCert(){
     try { localStorage.setItem('bimwin_user', JSON.stringify(USER)); } catch(e) {}
   }
   document.getElementById('cert-nomor').textContent=nomorSertifikat;
-  document.getElementById('cert-penghulu').textContent=adminConfig.namaKepalaKUA||'Kepala KUA';
+  document.getElementById('cert-penghulu').textContent=adminConfig.namaKepalaKUA||'( Nama Kepala KUA belum diisi Admin )';
   const nipEl=document.getElementById('cert-nip-display');if(nipEl)nipEl.textContent='NIP. '+(adminConfig.nipKepalaKUA||'—');
   markPageDone('sertifikat');
 }
@@ -1843,7 +1844,7 @@ function saveAdminConfig(){
   // 4. Update sertifikat jika visible
   const penghulu = document.getElementById('cert-penghulu');
   const nipEl = document.getElementById('cert-nip-display');
-  if (penghulu) penghulu.textContent = cfg.namaKepalaKUA || 'Kepala KUA';
+  if (penghulu) penghulu.textContent = cfg.namaKepalaKUA || '( Nama Kepala KUA belum diisi Admin )';
   if (nipEl) nipEl.textContent = 'NIP. ' + (cfg.nipKepalaKUA || '—');
 
   // 5. Tampilkan TTD di sertifikat jika ada
