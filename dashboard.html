@@ -43,8 +43,8 @@
   --shadow-sm:0 2px 8px rgba(0,0,0,0.30);--shadow-md:0 6px 20px rgba(0,0,0,0.40);
   --shadow-lg:0 12px 40px rgba(0,0,0,0.50);--shadow-xl:0 24px 64px rgba(0,0,0,0.60);
 }
-html,body{height:100%;font-family:var(--font-body);background:var(--bg-base);color:var(--text-color);-webkit-font-smoothing:antialiased;overflow-x:hidden;}
-body{overflow-y:auto;}
+html,body{height:100%;font-family:var(--font-body)}
+body{background:linear-gradient(rgba(10,61,31,0.75),rgba(10,61,31,0.75)),url('bg-landing.jpg') center/cover no-repeat fixed;color:var(--text);display:flex;align-items:center;justify-content:center;min-height:100vh;position:relative;overflow-x:hidden;overflow-y:auto;}
 /* GLOBAL PROGRESS BAR */
 .global-progress-bar{position:fixed;top:var(--top);left:0;right:0;height:3px;z-index:99;pointer-events:none;}
 .global-progress-fill{height:100%;background:linear-gradient(90deg,var(--g2),var(--g3),var(--gold));background-size:200% 100%;animation:shimmer 2.5s ease infinite;border-radius:0 2px 2px 0;transition:width .7s cubic-bezier(.34,1.56,.64,1);}
