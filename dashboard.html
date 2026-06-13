@@ -398,7 +398,17 @@ body{background:url('bg-landing.jpg') center/cover no-repeat fixed;color:var(--t
   .kuis-wrap{padding:20px 16px;}
   .form-2col{grid-template-columns:1fr;}
 }
-@media(prefers-reduced-motion:reduce){
+.slide-wrap{position:relative;border-radius:12px;overflow:hidden;margin-bottom:20px;background:#000;box-shadow:0 12px 36px rgba(0,0,0,.25);}
+.slide-track{display:flex;transition:transform .4s cubic-bezier(.34,1.56,.64,1);}
+.slide-track img{width:100%;flex-shrink:0;display:block;}
+.slide-nav{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,.45);color:#fff;border:none;width:40px;height:40px;border-radius:50%;font-size:1.3rem;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background .2s;z-index:5;}
+.slide-nav:hover{background:rgba(0,0,0,.7)}
+.slide-prev{left:10px}
+.slide-next{right:10px}
+.slide-dots{position:absolute;bottom:12px;left:0;right:0;display:flex;justify-content:center;gap:6px;z-index:5;}
+.slide-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:background .2s,transform .2s;}
+.slide-dot.active{background:var(--gold2);transform:scale(1.2)}
+  @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;transition-duration:.01ms !important}
 }
 </style>
@@ -555,7 +565,17 @@ document.addEventListener('DOMContentLoaded', function() {
   <div class="page-hdr"><div class="ph-label bersama">Materi Bersama · Bab 1 & 2</div><h1>Fondasi Keluarga Sakinah & Konsep SAMARA</h1><p>Pelajari landasan filosofis perkawinan dalam Islam: 4 Pilar, konsep Sakinah-Mawaddah-Rahmah, tingkatan keluarga sakinah, dan persiapan menikah yang kokoh.</p>
     <a href="https://bimbinganperkawinan.kemenag.go.id/storage/Buku_Fondasi_Keluarga_Sakinah.pdf" target="_blank" rel="noopener" class="btn-lanjut" style="margin-top:14px;font-size:.8rem;padding:10px 20px;">📥 Unduh Buku Fondasi Keluarga Sakinah (PDF)</a>
   </div>
-  <div class="video-box"><div class="vb-icon">🎬</div><div><div class="vb-title">Video Pengantar: Mengapa Menikah?</div><div class="vb-meta">⏱ 5–8 mnt · Tujuan perkawinan dalam Islam</div></div><button class="vb-btn" data-video-key="sesi1" onclick="openVideoModal('sesi1','Sesi 1: Fondasi & Tujuan Perkawinan')">▶ Tonton</button></div>
+ <div class="slide-wrap">
+  <div class="slide-track" id="slider-fondasi-track"></div>
+  <button class="slide-nav slide-prev" onclick="slidePrev('slider-fondasi')">‹</button>
+  <button class="slide-nav slide-next" onclick="slideNext('slider-fondasi')">›</button>
+  <div class="slide-dots" id="slider-fondasi-dots"></div>
+</div>
+<script>
+initSlider('slider-fondasi', [
+  '01_judul.jpg','02_urgensi_menikah.jpg','03_status_tujuan.jpg','04_empat_pilar_1.jpg','05_empat_pilar_2.jpg','06_sakinah_mawaddah_rahmah.jpg','07_tingkat_sakinah_1.jpg','08_tingkat_sakinah_2.jpg','09_penutup.jpg'
+]);
+</script>
   <div class="materi-card" onclick="toggleCard(this)"><div class="mc-header"><div class="mc-stripe" style="background:var(--g3)"></div><div class="mc-info"><div class="mc-title">1.1 Status Manusia & Tujuan Perkawinan</div><div class="mc-meta"><span>📖 Bab 1, Hal. 1–12</span><span>⏱ ~8 menit</span></div></div><button class="mc-chevron">▼</button></div>
   <div class="mc-body"><div class="mc-content"><div class="mc-ayat"><strong>QS. At-Taubah/9:71</strong> — Laki-laki dan perempuan yang beriman adalah saling menjadi penolong, menyuruh ma'ruf, mencegah munkar, mendirikan shalat, menunaikan zakat, dan taat kepada Allah dan Rasul-Nya.</div><div class="mc-subtitle">Dua Status Melekat pada Manusia</div><ul class="mc-list"><li><strong>Abd (Hamba Allah)</strong> — wajib taat dan beribadah kepada-Nya dalam segala aspek kehidupan</li><li><strong>Khalifah fil Ardh</strong> — diberi amanah menjaga dan memakmurkan bumi, dimulai dari keluarga</li></ul><div class="mc-highlight">💡 Perkawinan bukan semata menghalalkan kebutuhan biologis, melainkan ikhtiar membangun keluarga sebagai fondasi peradaban bangsa dan umat.</div><div class="mc-subtitle">7 Prinsip Perkawinan dalam Al-Qur'an</div><ul class="mc-list"><li><strong>Hudud Allah</strong> — perkawinan terikat aturan Allah</li><li><strong>Ridha & Taradhin</strong> — kerelaan penuh kedua pihak</li><li><strong>Ma'ruf</strong> — berdasarkan kelayakan dan norma yang baik</li><li><strong>Ihsan</strong> — perlakuan baik, melebihi sekadar tidak menyakiti</li><li><strong>Nihlah/Tulus</strong> — ketulusan dalam pemberian</li><li><strong>Musyawarah</strong> — keputusan diambil bersama</li><li><strong>Ishlah/Perdamaian</strong> — konflik diselesaikan dengan damai</li></ul></div></div><div class="read-badge">✓</div></div>
   <div class="materi-card" onclick="toggleCard(this)"><div class="mc-header"><div class="mc-stripe" style="background:var(--gold)"></div><div class="mc-info"><div class="mc-title">1.2 Empat Pilar Perkawinan yang Kokoh</div><div class="mc-meta"><span>📖 Hal. 8–9</span><span>⏱ ~10 menit</span></div></div><button class="mc-chevron">▼</button></div>
@@ -765,7 +785,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
 <script>
 'use strict';
-
+function initSlider(id, images){
+  const track = document.getElementById(id+'-track');
+  const dotsWrap = document.getElementById(id+'-dots');
+  track.innerHTML = images.map(src => `<img src="${src}" alt="">`).join('');
+  dotsWrap.innerHTML = images.map((_,i) => `<div class="slide-dot${i===0?' active':''}" onclick="slideGo('${id}',${i})"></div>`).join('');
+  window['slideState_'+id] = {idx:0, total: images.length};
+  updateSlide(id);
+}
+function updateSlide(id){
+  const st = window['slideState_'+id];
+  document.getElementById(id+'-track').style.transform = `translateX(-${st.idx*100}%)`;
+  document.querySelectorAll('#'+id+'-dots .slide-dot').forEach((d,i)=>d.classList.toggle('active', i===st.idx));
+}
+function slideGo(id, i){ window['slideState_'+id].idx = i; updateSlide(id); }
+function slideNext(id){ const st=window['slideState_'+id]; st.idx=(st.idx+1)%st.total; updateSlide(id); }
+function slidePrev(id){ const st=window['slideState_'+id]; st.idx=(st.idx-1+st.total)%st.total; updateSlide(id); }
 
 'use strict';
 
