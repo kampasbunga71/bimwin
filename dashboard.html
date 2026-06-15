@@ -455,7 +455,7 @@ document.addEventListener('DOMContentLoaded', function() {
       </div>
       <h1 class="hero-title">Selamat Datang Calon Pengantin!<br><span>Langkah Ibadah Terindah Anda Dimulai di Sini</span></h1>
       <p class="hero-subtitle">
-        KUA Kecamatan Anda siap menyambut dan mendampingi perjalanan Anda menuju keluarga yang sakinah, mawaddah, wa rahmah. Layanan kami mudah, transparan, dan sepenuhnya gratis.
+        KUA Kecamatan Anda siap menyambut dan mendampingi perjalanan Anda menuju keluarga yang sakinah, mawaddah, wa rahmah. Layanan kami mudah, transparan.
       </p>
       <button class="hero-start-btn" onclick="mulaiDashboard()">
         Cek Panduan Daftar Nikah &nbsp;↓
@@ -812,7 +812,7 @@ function updateSlide(id){
 function slideGo(id, i){ window['slideState_'+id].idx = i; updateSlide(id); }
 function slideNext(id){ const st=window['slideState_'+id]; st.idx=(st.idx+1)%st.total; updateSlide(id); }
 function slidePrev(id){ const st=window['slideState_'+id]; st.idx=(st.idx-1+st.total)%st.total; updateSlide(id); }
-initSlider('slider-fondasi', ['02_urgensi_menikah.jpg','03_status_tujuan.jpg','04_empat_pilar_1.jpg','05_empat_pilar_2.jpg','06_sakinah_mawaddah_rahmah.jpg','07_tingkat_sakinah_1.jpg','08_tingkat_sakinah_2.jpg','09_penutup.jpg']);
+initSlider('slider-fondasi', ['02_urgensi_menikah.jpg','03_status_tujuan.jpg','04_empat_pilar_1.jpg','05_empat_pilar_2.jpg','06_sakinah_mawaddah_rahmah.jpg','07_tingkat_sakinah_1.jpg','08_tingkat_sakinah_2.jpg']);
 initSlider('slider-dinamika', ['01_judul.jpg','02_tiga_komponen.jpg','03_sikap_penghancur_1.jpg','04_sikap_penghancur_2.jpg','05_strategi_kebutuhan.jpg','06_enam_tahap_1.jpg','07_enam_tahap_2.jpg','08_penutup.jpg']);
 'use strict';
 
